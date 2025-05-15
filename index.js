@@ -36,6 +36,9 @@ app.get(
 );
 
 app.get('/register', userController.getRegister);
+app.get('/login', userController.getLogin);
+app.post('/register', userController.postRegister);
+app.post('/login', userController.postLogin);
 
 app.post(
   '/delete-product/:id',
