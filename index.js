@@ -42,7 +42,7 @@ app.get(
   '/update-product/:id', auth,
   productsController.getUpdateProductView
 );
-
+app.get('/logout', userController.logout);
 app.get('/register', userController.getRegister);
 app.get('/login', userController.getLogin);
 app.post('/register', userController.postRegister);
