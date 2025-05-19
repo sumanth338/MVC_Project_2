@@ -7,9 +7,14 @@ import { uploadFile } from './src/middlewares/file-upload.middleware.js';
 import UserController from './src/controllers/user.controller.js';
 import session from 'express-session';
 import { auth } from './src/middlewares/auth.middleware.js';
+import cookieParser from 'cookie-parser';
+import { setLastVisit } from './src/middlewares/lastVisit.middleware.js'
 const app = express();
 
 app.use(express.static('public'));
+
+app.use(cookieParser())
+
 
 app.use(session({
   secret: "SecretKey",
@@ -32,7 +37,7 @@ app.set(
   path.join(path.resolve(), 'src', 'views')
 );
 
-app.get('/', auth, productsController.getProducts);
+app.get('/',setLastVisit, auth, productsController.getProducts);
 app.get(
   '/add-product', auth,
   productsController.getAddProduct
